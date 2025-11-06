@@ -29,8 +29,7 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-
-        /* Header — ✅ چیدمان ثابت: چپ: لوگو+عنوان، راست: همبرگر+زبان */
+        /* Header Styles */
         .header {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -44,12 +43,7 @@
             justify-content: space-between;
             align-items: center;
         }
-        .left-nav {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .right-nav {
+        .logo-container {
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -69,13 +63,11 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
-        /* Hamburger — همیشه فعال (حتی دسکتاپ) */
+        /* Hamburger Menu */
         .hamburger {
-            display: flex;
+            display: none;
             flex-direction: column;
             cursor: pointer;
-            z-index: 1001;
         }
         .hamburger span {
             width: 25px;
@@ -84,6 +76,29 @@
             margin: 3px 0;
             transition: var(--transition);
             border-radius: 2px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            margin: 0 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 800px;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: var(--transition);
+            white-space: nowrap;
+            font-size: 0.9rem;
+        }
+        .nav-link:hover {
+            background: var(--primary-green);
+            color: white;
+            transform: translateY(-2px);
         }
         .language-switch {
             background: var(--primary-green);
@@ -100,8 +115,7 @@
             background: var(--dark-green);
             transform: translateY(-2px);
         }
-
-        /* Mobile Menu — بدون نئون */
+        /* Mobile Menu */
         .mobile-menu {
             display: none;
             position: absolute;
@@ -110,15 +124,14 @@
             background: white;
             box-shadow: var(--shadow);
             border-radius: 10px;
-            padding: 0.5rem;
+            padding: 1rem;
             z-index: 999;
             flex-direction: column;
-            gap: 0.3rem;
+            gap: 0.5rem;
             min-width: 200px;
         }
         .mobile-menu.active {
             display: flex;
-            animation: fadeIn 0.3s ease-out;
         }
         .mobile-menu .nav-link {
             padding: 0.75rem;
@@ -126,18 +139,7 @@
             border-radius: 8px;
             width: 100%;
             box-sizing: border-box;
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 600;
-            transition: var(--transition);
-            border: 2px solid transparent;
         }
-        .mobile-menu .nav-link:hover {
-            background: var(--primary-green);
-            color: white;
-            transform: translateY(-2px);
-        }
-
         /* Hero Section */
         .hero {
             height: 100vh;
@@ -173,8 +175,7 @@
             margin-bottom: 1rem;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
-
-        /* Sections */
+        /* Section Styles */
         .section {
             padding: 6rem 2rem;
             position: relative;
@@ -199,10 +200,17 @@
             color: var(--dark-green);
             position: relative;
         }
-        /* ❌ خط زیر تیتر حذف شد */
+        /* ❌ خط زیر تیتر حذف شد — بر اساس درخواست قبلی */
+        /* .section-title::after { ... } — حذف شده */
 
-        /* Cards — ✅ بدون نئون — با رفع غیب‌شدن */
-        .card, .team-card {
+        /* ✅ Cards — بازگشت به responsive grid اصلی */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* ✅ اصلی */
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .card {
             background: white;
             border-radius: 20px;
             overflow: hidden;
@@ -211,53 +219,79 @@
             opacity: 0;
             animation: slideUp 0.6s ease-out forwards;
             transition: var(--transition);
-            /* ✅ border ثابت سبز — جلوگیری از layout shift */
+            /* ✅ border سبز ثابت — بدون غیب‌شدگی */
             border: 2px solid var(--primary-green);
-            /* ✅ prevent flicker */
             will-change: transform;
         }
-        .card:hover, .team-card:hover {
+        .card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
             /* ❌ بدون نئون */
         }
-        .card-image, .team-card-image {
+        .card-image {
             height: 180px;
             background-size: cover;
             background-position: center;
         }
-        .team-card-image {
-            height: 200px;
-        }
-        .card-content, .team-card-content {
+        .card-content {
             padding: 1.5rem;
         }
-        .card h3, .team-card h4 {
+        .card h3 {
             color: var(--dark-green);
             margin-bottom: 1rem;
             font-size: 1.3rem;
         }
-        .team-card h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-        .card p, .card li, .team-card p {
+        .card p, .card li {
             color: var(--text-dark);
             line-height: 1.8;
         }
 
-        /* Team Section — ✅ 2 ستون در همه دستگاه‌ها */
+        /* Team Section — فقط اینجا 2 ستون */
         .team-section {
             background: linear-gradient(135deg, var(--light-yellow) 0%, var(--cream) 100%);
         }
         .team-cards {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, 1fr); /* ✅ فقط برای تیم — 2 ستون در دسکتاپ */
             gap: 2rem;
             margin-top: 2rem;
         }
+        .team-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: slideUp 0.6s ease-out forwards;
+            transition: var(--transition);
+            border: 2px solid var(--primary-green);
+            will-change: transform;
+        }
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .team-card-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        .team-card-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .team-card h4 {
+            margin-bottom: 0.5rem;
+            color: var(--dark-green);
+            font-size: 1.2rem;
+        }
+        .team-card p {
+            margin: 0.3rem 0;
+            font-size: 0.95rem;
+        }
 
-        /* Contact Section — ✅ فونت مشکی، بدون بک‌گراند سفید */
+        /* Contact Section — ✅ فونت متن تماس مشکی */
         .contact-section {
             background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
             color: white;
@@ -270,12 +304,12 @@
         .contact-info p {
             margin: 0.8rem 0;
             font-size: 1.2rem;
-            /* ❌ بدون بک‌گراند سفید */
+            /* ❌ بک‌گراند سفید حذف شد */
             padding: 0.5rem 1rem;
             border-radius: 8px;
             font-weight: 500;
         }
-        /* ✅ جمله مورد نظر شما مشکی */
+        /* ✅ جمله تماس (هم در انگلیسی و هم فارسی) مشکی */
         #contact-intro {
             color: #000 !important;
         }
@@ -297,64 +331,78 @@
             margin: 0.5rem 0;
         }
 
-        /* Animations — فقط slideUp و fadeIn */
+        /* Animations */
         @keyframes slideUp {
             from { transform: translateY(50px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
 
-        /* Responsive — فقط برای موبایل تنظیم فونت و اندازه */
+        /* Responsive */
         @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links { display: none; }
             .hero h1 { font-size: 2rem; }
             .section-title { font-size: 1.8rem; }
             .header { padding: 1rem; }
             .site-title { font-size: 1.2rem; }
             .language-switch { padding: 0.4rem 0.8rem; font-size: 0.9rem; }
-            .team-cards { grid-template-columns: 1fr; } /* در موبایل یک ستون */
         }
-
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.6rem; }
             .section { padding: 4rem 1rem; }
             .section-title { font-size: 1.6rem; }
+            /* ✅ در موبایل، تیم یک ستونه */
+            .team-cards {
+                grid-template-columns: 1fr;
+            }
         }
 
-        /* RTL */
-        [dir="rtl"] .mobile-menu {
-            right: auto;
-            left: 2rem;
-        }
-        [dir="rtl"] .section-title {
+        /* ✅ RTL: تنظیمات متن برای فارسی */
+        html[dir="rtl"] body {
+            direction: rtl;
             text-align: right;
         }
-        [dir="rtl"] ul {
+        html[dir="rtl"] .section-content,
+        html[dir="rtl"] .hero-content,
+        html[dir="rtl"] .card-content,
+        html[dir="rtl"] .team-card-content {
+            text-align: right;
+        }
+        html[dir="rtl"] ul {
             margin-right: 2rem;
             margin-left: 0;
+            padding-right: 1.5rem;
         }
-        [dir="rtl"] .team-card-content {
+        html[dir="rtl"] .team-card-content {
             text-align: right;
         }
     </style>
 </head>
 <body>
-    <!-- Header — ✅ چیدمان ثابت -->
+    <!-- Header -->
     <header class="header">
-        <div class="left-nav">
+        <div class="logo-container">
             <div class="logo-placeholder"></div>
-            <h1 class="site-title">MycoFlair Research & Innovation Team</h1>
+            <h1 class="site-title">MycoFlair.ir</h1>
         </div>
-        <div class="right-nav">
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <button class="language-switch" id="languageSwitch">English</button>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
+        <nav class="nav-links" id="navLinks">
+            <a href="#hero" class="nav-link" id="nav-hero">Hero</a>
+            <a href="#about" class="nav-link" id="nav-about">About</a>
+            <a href="#advantages" class="nav-link" id="nav-advantages">Advantages</a>
+            <a href="#challenges" class="nav-link" id="nav-challenges">Challenges</a>
+            <a href="#achievements" class="nav-link" id="nav-achievements">Achievements</a>
+            <a href="#market" class="nav-link" id="nav-market">Market</a>
+            <a href="#ip" class="nav-link" id="nav-ip">IP Status</a>
+            <a href="#business" class="nav-link" id="nav-business">Business Model</a>
+            <a href="#collaboration" class="nav-link" id="nav-collaboration">Collaboration</a>
+            <a href="#team" class="nav-link" id="nav-team">اعضای تیم</a>
+            <a href="#contact" class="nav-link" id="nav-contact">Contact</a>
+        </nav>
         <div class="mobile-menu" id="mobileMenu">
             <a href="#hero" class="nav-link">Hero</a>
             <a href="#about" class="nav-link">About</a>
@@ -368,6 +416,7 @@
             <a href="#team" class="nav-link">اعضای تیم</a>
             <a href="#contact" class="nav-link">Contact</a>
         </div>
+        <button class="language-switch" id="languageSwitch">English</button>
     </header>
 
     <!-- Hero -->
@@ -486,7 +535,7 @@
         </div>
     </section>
 
-    <!-- Team — ✅ عنوان: اعضای تیم */
+    <!-- Team — ✅ تیتر: اعضای تیم */
     <section class="section team-section" id="team">
         <div class="section-content">
             <h2 class="section-title" id="team-title">اعضای تیم</h2>
@@ -512,7 +561,6 @@
         <div class="section-content">
             <h2 class="section-title" id="contact-title">Contact:</h2>
             <div class="contact-info">
-                <!-- ✅ مشکی — دقیقاً همان جمله شما -->
                 <p id="contact-intro">For technical information, research documentation, or collaboration inquiries, please contact us via the details below:</p>
                 <p><i class="fas fa-envelope"></i> <span id="contact-email">Email: info@mycoflair.com</span></p>
                 <p><i class="fas fa-phone"></i> <span id="contact-phone">Phone: +989123092855</span></p>
@@ -528,9 +576,10 @@
     </footer>
 
     <script>
+        // همان translations قبلی — فقط تیتر تیم و سال به‌روز شده
         const translations = {
             en: {
-                siteTitle: "MycoFlair Research & Innovation Team",
+                siteTitle: "MycoFlair.ir",
                 languageButton: "فارسی",
                 navHero: "Hero",
                 navAbout: "About",
@@ -618,7 +667,7 @@
                 footerDomain: "MycoFlair.ir"
             },
             fa: {
-                siteTitle: "تیم تحقیقاتی و نوآوری مایکوفلر",
+                siteTitle: "MycoFlair.ir",
                 languageButton: "English",
                 navHero: "هیرو",
                 navAbout: "درباره",
@@ -713,7 +762,7 @@
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
 
-        // Card generators
+        // Card generators — بدون تغییر
         function createAdvantagesCards() {
             const container = document.getElementById('advantages-cards');
             container.innerHTML = '';
@@ -768,26 +817,26 @@
             document.querySelector('.site-title').textContent = lang.siteTitle;
             languageSwitch.textContent = lang.languageButton;
 
-            // Mobile Menu Links
-            const links = mobileMenu.querySelectorAll('.nav-link');
-            links[0].textContent = lang.navHero;
-            links[1].textContent = lang.navAbout;
-            links[2].textContent = lang.navAdvantages;
-            links[3].textContent = lang.navChallenges;
-            links[4].textContent = lang.navAchievements;
-            links[5].textContent = lang.navMarket;
-            links[6].textContent = lang.navIP;
-            links[7].textContent = lang.navBusiness;
-            links[8].textContent = lang.navCollaboration;
-            links[9].textContent = lang.navTeam;
-            links[10].textContent = lang.navContact;
+            // Nav links
+            document.getElementById('nav-hero').textContent = lang.navHero;
+            document.getElementById('nav-about').textContent = lang.navAbout;
+            document.getElementById('nav-advantages').textContent = lang.navAdvantages;
+            document.getElementById('nav-challenges').textContent = lang.navChallenges;
+            document.getElementById('nav-achievements').textContent = lang.navAchievements;
+            document.getElementById('nav-market').textContent = lang.navMarket;
+            document.getElementById('nav-ip').textContent = lang.navIP;
+            document.getElementById('nav-business').textContent = lang.navBusiness;
+            document.getElementById('nav-collaboration').textContent = lang.navCollaboration;
+            document.getElementById('nav-team').textContent = lang.navTeam;
+            document.getElementById('nav-contact').textContent = lang.navContact;
 
-            // Content
+            // Hero
             document.getElementById('hero-title').textContent = lang.heroTitle;
             document.getElementById('hero-tagline').textContent = lang.heroTagline;
             document.getElementById('hero-desc1').textContent = lang.heroDesc1;
             document.getElementById('hero-desc2').textContent = lang.heroDesc2;
 
+            // Sections
             document.getElementById('about-title').textContent = lang.aboutTitle;
             document.getElementById('about-content1').textContent = lang.aboutContent1;
             document.getElementById('about-content2').textContent = lang.aboutContent2;
@@ -841,6 +890,7 @@
             document.getElementById('footer-copyright').textContent = lang.footerCopyright;
             document.getElementById('footer-domain').textContent = lang.footerDomain;
 
+            // RTL support
             if (currentLanguage === 'fa') {
                 htmlElement.setAttribute('dir', 'rtl');
                 htmlElement.setAttribute('lang', 'fa');
@@ -850,7 +900,7 @@
             }
         }
 
-        // Toggle hamburger
+        // Event handlers
         hamburger.addEventListener('click', () => {
             mobileMenu.classList.toggle('active');
             const spans = hamburger.querySelectorAll('span');
@@ -865,7 +915,6 @@
             }
         });
 
-        // Close on link click
         mobileMenu.addEventListener('click', (e) => {
             if (e.target.classList.contains('nav-link')) {
                 mobileMenu.classList.remove('active');
@@ -876,7 +925,6 @@
             }
         });
 
-        // Language switch
         languageSwitch.addEventListener('click', () => {
             currentLanguage = currentLanguage === 'en' ? 'fa' : 'en';
             updateContent();
