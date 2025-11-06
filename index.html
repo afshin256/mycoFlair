@@ -489,9 +489,9 @@
             <h2 class="section-title" id="contact-title">Contact:</h2>
             <div class="contact-info">
                 <p id="contact-intro">For technical information, research documentation, or collaboration inquiries, please contact us via the details below:</p>
-                <p><i class="fas fa-envelope"></i> <span id="contact-email">Email: info@mycoflair.com</span></p>
-                <p><i class="fas fa-phone"></i> <span id="contact-phone">Phone: +989123092855</span></p>
-                <p><i class="fas fa-globe"></i> <span id="contact-website">Website: www.MycoFlair.ir</span></p>
+                <p><i class="fas fa-envelope"></i> <span id="contact-email"></span></p>
+                <p><i class="fas fa-phone"></i> <span id="contact-phone"></span></p>
+                <p><i class="fab fa-linkedin"></i> <span id="contact-linkedin"></span></p>
             </div>
         </div>
     </section>
@@ -583,9 +583,9 @@
                 teamMission: "MycoFlair Research & Innovation Team, The global originator of MGF-02 technology and a pioneer in fungal biotechnology.",
                 contactTitle: "Contact:",
                 contactIntro: "For technical information, research documentation, or collaboration inquiries, please contact us via the details below:",
-                contactEmail: "Email: info@mycoflair.com",
-                contactPhone: "Phone: +989123092855",
-                contactWebsite: "Website: www.MycoFlair.ir",
+                contactEmail: 'Email: <a href="mailto:info@mycoflair.ir">info@mycoflair.ir</a>',
+                contactPhone: 'Phone: <a href="tel:+989123092855">+989123092855</a>',
+                contactLinkedin: 'LinkedIn: <a href="https://www.linkedin.com/in/mycoflair-team-1b5536391/">MycoFlair Team</a>',
                 footerCopyright: "© 2025 MycoFlair Research & Innovation Team. All rights reserved.",
                 footerDomain: "MycoFlair.ir"
             },
@@ -671,9 +671,9 @@
                 teamMission: "تیم تحقیقاتی و نوآوری مایکوفلر بنیان‌گذار فناوری MGF-02 در جهان و پیشگام در حوزه زیست‌فناوری قارچ.",
                 contactTitle: "اطلاعات تماس (Contact):",
                 contactIntro: "برای دریافت اطلاعات فنی، مستندات پژوهشی یا هماهنگی جهت همکاری، لطفاً از طریق اطلاعات زیر با ما در تماس باشید:",
-                contactEmail: "ایمیل : info@mycoflair.com",
-                contactPhone: "تلفن: +989123092855",
-                contactWebsite: "www.MycoFlair.ir",
+                contactEmail: 'ایمیل: <a href="mailto:info@mycoflair.ir">info@mycoflair.ir</a>',
+                contactPhone: 'تلفن: <a href="tel:+989123092855">+989123092855</a>',
+                contactLinkedin: 'لینکدین: <a href="https://www.linkedin.com/in/mycoflair-team-1b5536391/">تیم مایکوفلر</a>',
                 footerCopyright: "© 2025 تیم تحقیقاتی و نوآوری مایکوفلر. کلیه حقوق محفوظ است.",
                 footerDomain: "MycoFlair.ir"
             }
@@ -788,9 +788,9 @@
             document.getElementById('team-mission').textContent = lang.teamMission;
             document.getElementById('contact-title').textContent = lang.contactTitle;
             document.getElementById('contact-intro').textContent = lang.contactIntro;
-            document.getElementById('contact-email').textContent = lang.contactEmail;
-            document.getElementById('contact-phone').textContent = lang.contactPhone;
-            document.getElementById('contact-website').textContent = lang.contactWebsite;
+            document.getElementById('contact-email').innerHTML = lang.contactEmail;
+            document.getElementById('contact-phone').innerHTML = lang.contactPhone;
+            document.getElementById('contact-linkedin').innerHTML = lang.contactLinkedin;
             document.getElementById('footer-copyright').textContent = lang.footerCopyright;
             document.getElementById('footer-domain').textContent = lang.footerDomain;
             if (currentLanguage === 'fa') {
