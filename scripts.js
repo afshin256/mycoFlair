@@ -74,7 +74,7 @@ const translations = {
         teamMembers: [
             { name: "Ismaeel Khorshidi - B.Sc. in Genetics.", title: "Senior Researcher and Scientific Supervisor.", image: "ismaeel khorshidi.jpg" },
             { name: "Masoome Khani - M.Sc. in Astrophysics - Ph.D. Student in Condensed Matter Physics.", title: "Researcher in the Field of Space Exploration (Specifically the Moon).", image: "masoome khani.jpg" },
-            { name: "Amir Marandi - M.Sc. in Business Management.", title: "Director of Business Development and international partnership.", image: "amir marandi.jpg" },
+            { name: "Amir Marandi - M.A in Marketing Management.", title: "Director of Business Development and international partnership.", image: "amir marandi.jpg" },
             { name: "Saeid Khorshidi - M.A. in Law.", title: "Biological Systems Designer and Legal Supervisor.", image: "saeid khorshidi.jpg" }
         ],
         teamLocation: "Based in Iran",
